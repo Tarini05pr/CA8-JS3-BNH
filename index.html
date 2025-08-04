@@ -20,6 +20,7 @@
     <script>
         //this collects info from player//
         let playerName = prompt('Welcome to Bear Hunter Ninja! Please enter your name to get started: ');
+        //validates user input and the cancel button
         if (playerName === null){
             document.getElementById("validation").innerHTML = "Please Press F5 to Play Again.";
         } else {
@@ -29,6 +30,7 @@
 
         let play = 'Yes';
         do{
+        //validates the user choice
         if (player !== 'bear' && player !== 'ninja' && player !== 'hunter') {
             document.getElementById("validation").innerHTML = "Invalid Entry<br>Please Press F5 to Play Again.";
             break;
@@ -79,6 +81,7 @@
             document.getElementById("outcome").innerHTML = "You Lost."
             console.log('You Lost.');
         }
+        //asks if the user wants to keep playing
         play = prompt(playerName + ", would you like to play again, Yes or No?");
     } while (play === 'Yes')
 }
