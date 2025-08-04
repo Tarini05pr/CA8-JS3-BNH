@@ -9,38 +9,65 @@
 
     <title>Play BHN</title>
     <script>
-        //this collects info from player//
-        let playerName = prompt('Welcome to Bear Hunter Ninja! Please enter your name to get started: ');
         
-        window.alert("Hi " + playerName + " Let's Play!!");
-
-        let player = prompt('Who are you Bear, Ninja or Hunter?');
     </script>
 </head>
 <body>
+    <p id = "validation"></p>
    <p id="playerPick"></p>
    <p id = "compPick"></p>
    <p id = "outcome"></p>
     <script>
+        //this collects info from player//
+        let playerName = prompt('Welcome to Bear Hunter Ninja! Please enter your name to get started: ');
+        if (playerName === null){
+            document.getElementById("validation").innerHTML = "Please Press F5 to Play Again.";
+        } else {
+            window.alert("Hi " + playerName + " Let's Play!!");
+        
+        let player = prompt('Who are you Bear, Ninja or Hunter?').toLowerCase();
+
+        let play = 'Yes';
+        do{
+        if (player !== 'bear' && player !== 'ninja' && player !== 'hunter') {
+            document.getElementById("validation").innerHTML = "Invalid Entry<br>Please Press F5 to Play Again.";
+            break;
+        }
+         //array of computer options and random pick
+        const choices = ["bear", "ninja", "hunter"];
+        let computer = choices[Math.floor(Math.random() * 3)];
         //displays the players pick and the computers pick
         document.getElementById("playerPick").innerHTML = playerName + ', You picked ' + player + '!';
-        document.getElementById("compPick").innerHTML ='The computer picked Bear!';
+        document.getElementById("compPick").innerHTML ='The computer picked ' + computer + '!';
         console.log(playerName + ', You picked ' + player + '!');
-        console.log('The computer picked Bear!');
+        console.log('The computer picked ' + computer + '!');
         //assigns a new variable for the winner
         let win;
         //assigns a number value for a win, lose, or tie
-        switch (player){
-            case 'Bear':
-                win = 0;
-                break;
-            case 'Ninja':
-                win = -1;
-                break;
-            case 'Hunter':
-                win = 1; 
-                break;      
-        }   
+        if (player === computer){
+            win = 0;
+        }else if (player === 'bear') {
+            switch(player){
+                case 'hunter':
+                    win = -1;
+                case 'ninja':
+                    win = 1;
+            }
+        }else if (player === 'ninja'){
+            switch(player){
+                case 'bear':
+                    win = -1;
+                case 'hunter':
+                    win = 1;
+            }
+        }else if (player === 'hunter'){
+            switch(player){
+                case 'ninja':
+                    win = -1;
+                case 'bear':
+                    win = 1;
+            }
+        }
         //determines the outcome based on the value of win
         if(win == 0){
             document.getElementById("outcome").innerHTML = "Its A Tie.";
@@ -52,5 +79,8 @@
             document.getElementById("outcome").innerHTML = "You Lost."
             console.log('You Lost.');
         }
+        play = prompt(playerName + ", would you like to play again, Yes or No?");
+    } while (play === 'Yes')
+}
     </script>
 </body>
