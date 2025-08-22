@@ -49,21 +49,21 @@
         if (player === computer){
             win = 0;
         }else if (player === 'bear') {
-            switch(player){
+            switch(computer){
                 case 'hunter':
                     win = -1;
                 case 'ninja':
                     win = 1;
             }
         }else if (player === 'ninja'){
-            switch(player){
+            switch(computer){
                 case 'bear':
                     win = -1;
                 case 'hunter':
                     win = 1;
             }
         }else if (player === 'hunter'){
-            switch(player){
+            switch(computer){
                 case 'ninja':
                     win = -1;
                 case 'bear':
